@@ -94,10 +94,9 @@ class AFKMod(loader.Module):
                 while hours >= 24:
                     hours -= 24
                     pass
-                tz = datetime.datetime.now(datetime.timezone(datetime.timedelta(0))).astimezone().tzinfo
                 afktime = "My queen has been afk for " + str(years) + " years " + str(months) + " months " + str(days)
                 afktime += " days " + str(hours) + " hours " + str(minutes) + " minutes " + str(seconds)
-                afktime += " seconds\nLast Seen: " + lastonline + "\nTimezone: UTC" + str(tz)
+                afktime += " seconds\nLast Seen: " + lastonline
                 if years == 0:
                     afktime = afktime.replace("0 years ", "")
                     pass
