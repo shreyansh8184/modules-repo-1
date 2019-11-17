@@ -57,7 +57,7 @@ class Filters(loader.Module):
         while filtern.strip() == (""):
         	await message.edit("<code>Please type a name for the filter.</code>")
         	return
-        filterv = getr.text
+        filterv = getr.text.lower()
         if getr.media:
         	if BOTLOG_CHATID:
         		fwd = await self._client.forward_messages(BOTLOG_CHATID, getr, message.chat_id, silent=True)
@@ -118,7 +118,7 @@ class Filters(loader.Module):
         	await message.edit('<code>No filters found in this chat.</code>')
         	
     async def watcher(self, message):
-    	args = message.text
+    	args = message.text.lower()
     	filters = self._db.get(__name__, "filters")
     	if getattr(message.to_id, "user_id", None) != message.from_id and filters:
     		chatid = message.chat_id
