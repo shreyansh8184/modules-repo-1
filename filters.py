@@ -44,8 +44,12 @@ class Filters(loader.Module):
         getr = await message.get_reply_message()
         chatid = message.chat_id
         filters = self._db.get(__name__, "filters")
-        if not filters or str(list(filters)).find(str(chatid)) == -1:
+        if not filters
         	filters = {chatid: {}}
+                pass
+        elif str(list(filters)).find(str(chatid)) == -1:
+                filters.setdefault(chatid, {})
+                pass
         if not getr:
         	await message.reply("<code>Reply to a message first!</code>")
         	return
@@ -56,17 +60,17 @@ class Filters(loader.Module):
         if getr.media:
         	if BOTLOG_CHATID:
         		fwd = await self._client.forward_messages(BOTLOG_CHATID, getr, message.chat_id, silent=True)
-        		filters.setdefault(chatid, {})[filtern] = fwd.id
+        		filters.update({chatid: {filtern: fwd.id}})
         		self._db.set(__name__, "filters", filters)
         	else:
-        		filters.setdefault(chatid, {})[filtern] = getr.id
+        		filters.update({chatid: {filtern: getr.id}})
         		self._db.set(__name__, "filters", filters)
         	await message.edit("<code>Filter '" + filtern + "' successfully saved into the list.</code>")	
         	return
         elif not filterv:
         	await message.edit("<code>Please reply to a message to save as filter.</code>")
         	return
-        filters.setdefault(chatid, {})[filtern] = filterv
+        filters.update({chatid: {filtern: filterv}})
         self._db.set(__name__, "filters", filters)
         await message.edit("<code>Filter '" + filtern + "' successfully added into filters.</code>")
         	
