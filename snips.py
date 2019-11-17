@@ -124,7 +124,7 @@ class Snips(loader.Module):
     	if isinstance(val, int) == True:
     		await message.delete()
     		loggedsnip = await message.client.get_messages(entity=BOTLOG_CHATID, ids=int(val))
-    		await message.client.send_message(message.chat_id, loggedsnip.message, reply_to=message.id, file=loggedsnip.media)
+    		await message.client.send_message(message.chat_id, loggedsnip.message, file=loggedsnip.media)
     		return
     	elif val:
     		await message.edit(val)
