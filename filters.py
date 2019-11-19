@@ -130,7 +130,7 @@ class Filters(loader.Module):
     	args = str(message.text.lower())
     	filters = self._db.get("FilterModule", "filters")
     	chatid = str(message.chat_id)
-    	if str(filters).find(chatid) != -1.and filters:
+    	if str(filters).find(chatid) != -1 and filters:
     		for key in filters[chatid]:
     			val = filters[chatid][str(key)]
     			if args.find(str(key)) != -1:
