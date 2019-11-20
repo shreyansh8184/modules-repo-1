@@ -58,7 +58,7 @@ class GetPPMod(loader.Module):
                         photo = await self.client.download_profile_photo(message.input_chat)
                     await self.client.send_file(message.chat_id, photo)
                 except:
-                    await message.edit("<code>This user has no photos.</code>")
+                    await message.edit("<code>This user has no photos</code>")
                     return
         else:
             try:
