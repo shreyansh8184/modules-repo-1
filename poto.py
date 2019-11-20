@@ -48,7 +48,7 @@ class GetPPMod(loader.Module):
         if id.strip() == "":
             try:
                 await self.client.send_file(message.chat_id, photos)
-            except a:
+            except:
                 photo = await self.client.download_profile_photo(chat)
                 await self.client.send_file(message.chat_id, photo)
         else:
