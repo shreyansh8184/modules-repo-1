@@ -151,11 +151,6 @@ class AntiPMMod(loader.Module):
     async def watcher(self, message):
         if getattr(message.to_id, "user_id", None) == self._me.user_id:
             logger.debug("pm'd!")
-            if message.from_id in self._ratelimit:
-                self._ratelimit.remove(message.from_id)
-                return
-            else:
-                self._ratelimit += [message.from_id]
             user = await utils.get_user(message)
             if user.is_self or user.bot or user.verified:
                 logger.debug("User is self, bot or verified.")
