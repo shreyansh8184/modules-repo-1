@@ -30,7 +30,7 @@ def register(cb):
 
 
 class Snips(loader.Module):
-    """Saves some texts to call on them literally anywhere and anytime"""
+    """Saves some texts or medias to call on them literally anywhere and anytime"""
 
     def __init__(self):
         self.name = _("Snips")
