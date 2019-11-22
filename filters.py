@@ -67,7 +67,7 @@ class Filters(loader.Module):
                 return
             else:
                 name = filtern[0]
-            if len(filtern) is 1:
+            if len(filtern) == 1:
                 await message.edit("<code>Please reply to a message or enter a text to save as filter.!</code>")
                 return
             else:
