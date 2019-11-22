@@ -20,7 +20,6 @@ from .. import loader, utils
 
 import logging
 
-from telethon import functions, types
 from userbot import (BOTLOG_CHATID)
 logger = logging.getLogger("SnipsMod")
 
@@ -60,7 +59,7 @@ class Snips(loader.Module):
                 return
             else:
                 name = snipn[0]
-            if len(snipn) is 1:
+            if len(snipn) == 1:
                 await message.edit("<code>Please reply to a message or enter a text to save as snip.!</code>")
                 return
             else:
@@ -71,24 +70,28 @@ class Snips(loader.Module):
         if reply and reply.media:
             if BOTLOG_CHATID:
                 try:
-                    fwd = await self._client.send_message(BOTLOG_CHATID, reply.message, file=reply.media, link_preview=False)
+                    fwd = await self._client.send_message(
+                        BOTLOG_CHATID, reply.message, file=reply.media, link_preview=False)
                 except BaseException:
-                    fwd = await self._client.send_message(BOTLOG_CHATID, reply.message, file=None, link_preview=False)
+                    fwd = await self._client.send_message(
+                        BOTLOG_CHATID, reply.message, file=None, link_preview=False)
                 sniplist[snipn] = fwd.id
                 self._db.set("SnipsMod", "sniplist", sniplist)
             else:
                 await message.edit("<code>Set your BOTLOG_CHATID first.</code>")
                 return
-            await message.edit("<code>Snip '" + snipn + "' successfully saved into the list. Type .getsnip " + snipn + " to call it.</code>"
+            await message.edit("<code>Snip '" + snipn + "' successfully saved into the list."
+                               " Type .getsnip " + snipn + " to call it.</code>"
                                "\n\n<code>Others can access it via $" + snipn + "</code>"
-                               )
+                                               )
             return
         else:
             sniplist[name] = value
             self._db.set("SnipsMod", "sniplist", sniplist)
-            await message.edit("<b>Snip '" + name + "' successfully saved into the list. Type .getsnip " + name + " to call it.</b>"
+            await message.edit("<b>Snip '" + name + "' successfully saved into the list."
+                               "Type .getsnip " + name + " to call it.</b>"
                                "\n\n<b>Others can access it via $" + name + "</b>"
-                              )
+                                               )
 
     async def sniprmcmd(self, message):
         """Removes a snip from the list."""
@@ -188,9 +191,13 @@ class Snips(loader.Module):
             if isinstance(val, int):
                 loggedsnip = await message.client.get_messages(entity=BOTLOG_CHATID, ids=int(val))
                 try:
-                    await message.client.send_message(message.chat_id, loggedsnip.message, reply_to=message.id, file=loggedsnip.media)
+                    await message.client.send_message(
+                        message.chat_id, loggedsnip.message, reply_to=message.id, file=loggedsnip.media
+                                                                                      )
                 except BaseException:
-                    await message.client.send_message(message.chat_id, loggedsnip.message, reply_to=message.id, file=None)
+                    await message.client.send_message(
+                        message.chat_id, loggedsnip.message, reply_to=message.id, file=None
+                                                                        .             )
                 return
             else:
                 exec = True
