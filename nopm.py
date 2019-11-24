@@ -83,7 +83,7 @@ class AntiPMMod(loader.Module):
         await message.edit("<code>Retrieving the list, hold on a sec...</code>")
         for user in authorized:
         	getuser = await self._client.get_entity(user)
-        	userlist += "  »  <a href='tg://user?id={}'>{}</a>\n".format(user, str(getuser.first_name).capitalize())
+        	userlist += "  »  <a href='tg://user?id={}'>{}</a>\n".format(user, getuser.first_name)
         await message.edit(caption + userlist)
         
     async def clearallowedcmd(self, message):
