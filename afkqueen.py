@@ -87,9 +87,9 @@ class AFKMod(loader.Module):
                     await self._db.store_asset(
                         "<b>***YOU GOT THIS MESSAGE WHEN YOU WERE UNAVAILABLE***</b>\n\n"
                         "<b># User: </b><a href='tg://user?id={}'>{}</a>\n"
-                        "<b># Chat: </b><a href='https://t.me/{}'>{}</a>\n<b># Message Link: </b>{}\n\n"
+                        "<b># Chat: </b><a href='https://t.me/c/{}'>{}</a>\n<b># Message Link: </b>{}\n\n"
                         "<b>Message:</b>\n<i>{}</i>"
-                        .format(message.sender.id, user, chat.username, chat.title, link, msg))
+                        .format(message.sender.id, user, chat.id, chat.title, link, msg))
                     pass
                 now = datetime.datetime.now()
                 afkreason = f"<i>{utils.escape_html(self.get_afk())}</i>"
