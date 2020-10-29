@@ -99,9 +99,9 @@ class HelpMod(loader.Module):
         		if mod.name.lower() == args.lower():
         			module = mod
         	if module is None:
-        		await message.edit("<code>" + _("Invalid module name specified") + "</code>")
+        		await message.edit("<code>" + ("Invalid module name specified") + "</code>")
         		return
-        	reply = "<b>" + _("Help for</b> <code>{}</code>:").format(utils.escape_html(_(module.name))) + "\n  "	
+        	reply = "<b>" + ("Help for</b> <code>{}</code>:").format(utils.escape_html(_(module.name))) + "\n  "	
         	if module.__doc__:
         		reply += utils.escape_html(inspect.cleandoc(module.__doc__))
         	else:
@@ -112,5 +112,5 @@ class HelpMod(loader.Module):
         			reply += utils.escape_html("\n".join(["    " + x for x in 
         			_(inspect.cleandoc(fun.__doc__)).splitlines()]))
         		else:
-        			reply += _("There is no documentation for this command")
+        			reply += ("There is no documentation for this command")
         	await utils.answer(message, reply)
